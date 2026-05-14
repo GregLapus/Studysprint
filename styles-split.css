@@ -1,0 +1,652 @@
+/* ============================================
+   StudySprint - Elegant UI Design System
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+/* --- Reset & Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-50: #eef2ff;
+    --primary-100: #e0e7ff;
+    --primary-200: #c7d2fe;
+    --primary-400: #818cf8;
+    --primary-500: #6366f1;
+    --primary-600: #4f46e5;
+    --primary-700: #4338ca;
+    --accent-500: #f59e0b;
+    --accent-600: #d97706;
+    --surface: #ffffff;
+    --surface-alt: #f8fafc;
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --error: #ef4444;
+    --error-bg: #fef2f2;
+    --success: #10b981;
+    --success-bg: #ecfdf5;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    --gradient-warm: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #d946ef 100%);
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--surface-alt);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* --- Split Card Layout (Login/Signup) --- */
+.split-container {
+    width: 100%;
+    max-width: 960px;
+    padding: 24px;
+    margin: 0 auto;
+}
+
+.split-card {
+    display: flex;
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+    height: 580px;
+}
+
+/* Left Side */
+.split-left {
+    flex: 1;
+    background: var(--gradient-warm);
+    padding: 60px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.split-left::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.split-left::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -30%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.split-left-content {
+    text-align: center;
+    max-width: 300px;
+    position: relative;
+    z-index: 1;
+}
+
+.split-left-content .logo-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.split-left-content h1 {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.split-left-content p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+.btn-signup {
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    color: white;
+    padding: 13px 40px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    backdrop-filter: blur(10px);
+    margin-top: 30px;
+}
+
+.btn-signup:hover {
+    background: white;
+    color: #6366f1;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Right Side - Scrollable Form */
+.split-right {
+    flex: 1;
+    padding: 0;
+    display: flex;
+    overflow: hidden;
+    background: var(--surface);
+    height: 100%;
+}
+
+.split-form {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 40px 52px 60px 52px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.split-form::-webkit-scrollbar {
+    width: 6px;
+}
+
+.split-form::-webkit-scrollbar-track {
+    background: var(--border-light);
+    border-radius: 3px;
+}
+
+.split-form::-webkit-scrollbar-thumb {
+    background: var(--primary-400);
+    border-radius: 3px;
+}
+
+.split-form::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-500);
+}
+
+.split-form h2 {
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    font-size: 1.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+
+.split-form .subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 32px;
+    font-weight: 400;
+}
+
+.split-form .form-footer {
+    padding-bottom: 20px;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.social-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    background: var(--surface-alt);
+}
+
+.social-icon:hover {
+    border-color: var(--primary-500);
+    color: var(--primary-500);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+.social-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Divider */
+.divider {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    position: relative;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 35%;
+    height: 1px;
+    background: var(--border);
+}
+
+.divider::before { left: 0; }
+.divider::after { right: 0; }
+
+/* Input Fields */
+.input-group {
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    background: var(--surface-alt);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-500);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.input-group input::placeholder {
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+/* Submit Button */
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-top: 8px;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+}
+
+/* Forgot Password Link */
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.form-footer a {
+    color: var(--primary-500);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.form-footer a:hover {
+    color: var(--primary-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Error Message */
+.error-message {
+    background: var(--error-bg);
+    border: 1px solid #fecaca;
+    color: var(--error);
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    margin-bottom: 16px;
+    font-size: 0.88rem;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* Success Message */
+.success-message {
+    background: var(--success-bg);
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* Centered Card (Forgot Password / Reset / Verify) */
+.auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+    background: var(--gradient-primary);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.auth-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: var(--radius-xl);
+    padding: 48px 44px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: var(--shadow-xl);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.auth-card h2 {
+    font-family: var(--font-heading);
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.auth-card .auth-subtitle {
+    color: var(--text-secondary);
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 32px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    background: var(--surface-alt);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-500);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.form-group input::placeholder {
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+.auth-card .btn-submit {
+    margin-top: 8px;
+}
+
+/* Back Link */
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 28px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    background: var(--border-light);
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    background: var(--border);
+    color: var(--primary-600);
+    transform: translateY(-1px);
+}
+
+/* Auth Cards - Error/Success */
+.auth-card .error-message {
+    font-size: 0.85rem;
+    padding: 10px 14px;
+}
+
+.auth-card .success-message {
+    font-size: 0.88rem;
+    padding: 12px 16px;
+}
+
+/* OTP Input */
+.otp-input {
+    width: 100%;
+    padding: 16px;
+    font-size: 28px;
+    text-align: center;
+    letter-spacing: 12px;
+    font-family: var(--font-heading);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface-alt);
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.otp-input:focus {
+    border-color: var(--primary-500);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* Resend Link */
+.resend-link {
+    display: block;
+    text-align: center;
+    margin-top: 24px;
+    color: var(--primary-500);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 10px;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+}
+
+.resend-link:hover {
+    color: var(--primary-700);
+    background: var(--primary-50);
+}
+
+/* Success Floating Banner */
+.floating-success {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    background: var(--success-bg);
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    padding: 20px 24px;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+    max-width: 380px;
+    animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    font-weight: 500;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.login-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 13px;
+    margin-top: 16px;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .split-card {
+        flex-direction: column;
+        min-height: auto;
+        border-radius: var(--radius-lg);
+    }
+
+    .split-left {
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        padding: 40px 28px;
+        min-height: 260px;
+    }
+
+    .split-right {
+        padding: 0;
+    }
+
+    .split-left-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .split-form {
+        max-width: 100%;
+        padding: 40px 28px;
+    }
+
+    .auth-card {
+        padding: 36px 24px;
+    }
+
+    .auth-card h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .split-container {
+        padding: 12px;
+    }
+
+    .split-left {
+        padding: 32px 20px;
+    }
+
+    .split-form {
+        padding: 28px 20px;
+    }
+}
