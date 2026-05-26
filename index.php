@@ -129,7 +129,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
         $status = $_POST['status'];
         
         $stmt = $conn->prepare("UPDATE sessions SET title=?, subject=?, date=?, time=?, duration=?, notes=?, status=? WHERE id=? AND user_id=?");
-        $stmt->bind_param("ssssdsii", $title, $subject, $date, $time, $duration, $notes, $status, $session_id, $_SESSION['user']['id']);
+        $stmt->bind_param("ssssdsiii", $title, $subject, $date, $time, $duration, $notes, $status, $session_id, $_SESSION['user']['id']);
         
         if ($stmt->execute()) {
             echo json_encode(['success' => true]);
